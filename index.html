@@ -1,0 +1,56 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css">
+  <script>
+    async function load() {
+      if(await isLogin()) {
+        window.location = "./dashboard.html"
+      } else {
+        console.log("Not login")
+      }
+    }
+    window.onload = load;
+  </script>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="ts narror container">
+      <div class="login-box ts centered segment ">
+        <form class="ts form">
+          <h2 class="ts center aligned header">歡迎使用
+            <div class="sub header">請先進行登入</div>
+          </h2>
+          <div id="message"></div>
+          <div class="ts divider"></div>
+          <div class="field">
+            <label>使用者名稱</label>
+            <input name="username" type="text">
+          </div>
+          <div class="field">
+            <label>密碼</label>
+            <input name="password" type="password">
+          </div>
+          <a href="register.html" class="ts secondary button">註冊</a>
+          <button onclick="login(this)" class="ts primary button labeled icon right floated">
+            登入
+            <i class="send icon"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="bg">
+
+  </div>
+  <script src="./app.js"></script>
+
+</body>
+
+</html>

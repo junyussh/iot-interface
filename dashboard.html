@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="ts container">
+            <h1>Hello</h1>
+        </div>
+    </div>
+    <div class="bg"></div>
+    <script src="app.js"></script>
+    <script>
+        async function load() {
+            if (!await isLogin()) {
+                window.location = "./"
+            }
+        }
+        window.onload = load;
+    </script>
+</body>
+
+</html>

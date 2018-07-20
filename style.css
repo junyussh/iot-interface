@@ -1,0 +1,46 @@
+.bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: linear-gradient(to top, rgba(46, 49, 65, 0.6), rgba(46, 49, 65, 0.6)), url(https://source.unsplash.com/random);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-origin: content-box;
+  z-index: 0;
+}
+
+.center {
+  text-align: center;
+}
+
+.login-box {
+  width: 363px;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0;
+  padding: 50px 1em !important;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+  min-height: 100vh;
+}
+
+.ts.button {
+  border-radius: 0.15rem;
+  border-top-left-radius: 0.15rem;
+  border-top-right-radius: 0.15rem;
+  border-bottom-right-radius: 0.15rem;
+  border-bottom-left-radius: 0.15rem;
+  box-shadow: 0 2px 2px #0000002b;
+  border-width: 0;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 0px;
+  border-left-width: 0px;
+}
