@@ -25,7 +25,7 @@
                 </button>
             </div>
         </div>
-        <div class="sixteen wide column">
+        <div class="sixteen wide column" id="content">
             <div class="ts segment">
                 <table class="ts borderless celled table loading">
                     <thead>
@@ -35,7 +35,7 @@
                             <th>Field</th>
                             <th>Value</th>
                         </tr>
-                        <tbody id="content">
+                        <tbody>
                             <tr>
                                 <td>1</td>
                                 <td>卡莉絲</td>
@@ -46,7 +46,7 @@
                     </thead>
                 </table>
             </div>
-            <div class="ts active dimmer" onload="loadData(this)">
+            <div class="ts active dimmer">
                 <div class="ts text loader">讀取中</div>
             </div>
         </div>
@@ -57,11 +57,11 @@
             CleanSession();
             window.location = "./";
         }
-
         async function load() {
             if (!await isLogin()) {
                 window.location = "./"
             }
+            loadData();
         }
         window.onload = load;
     </script>

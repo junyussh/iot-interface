@@ -1,4 +1,4 @@
-const URL = "http://35.236.160.136/api";
+const URL = "http://api.cws.nctu.me/api";
 
 const SaveSession = (token) => {
   localStorage["token"] = token;
@@ -23,10 +23,11 @@ function isLogin() {
     }
   })
 }
-function loadData(e) {
-  console.log(e)
+function loadData() {
+  var content = document.querySelector("#content");
+  console.log(content);
   get("/device?token=" + localStorage.getItem("token")).then((res) => {
-    console.log(res)
+    console.log(res);
   });
 }
 function getValue() {
