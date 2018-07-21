@@ -11,14 +11,53 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="ts container">
-            <h1>Hello</h1>
+    <br>
+    <div class="ts container narrow stackable grid">
+        <div class="two column row">
+            <div class="twelve wide column">
+                <h2 class="ts header">
+                    儀表板
+                </h2>
+            </div>
+            <div class="four wide column">
+                <button onclick="logout()" class="ts basic button right floated">
+                    <i class="icon log out"></i> 登出
+                </button>
+            </div>
+        </div>
+        <div class="sixteen wide column">
+            <div class="ts segment">
+                <table class="ts borderless celled table loading">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Field</th>
+                            <th>Value</th>
+                        </tr>
+                        <tbody id="content">
+                            <tr>
+                                <td>1</td>
+                                <td>卡莉絲</td>
+                                <td>Caris</td>
+                                <td>2</td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+            </div>
+            <div class="ts active dimmer" onload="loadData(this)">
+                <div class="ts text loader">讀取中</div>
+            </div>
         </div>
     </div>
-    <div class="bg"></div>
     <script src="app.js"></script>
     <script>
+        function logout() {
+            CleanSession();
+            window.location = "./";
+        }
+
         async function load() {
             if (!await isLogin()) {
                 window.location = "./"
