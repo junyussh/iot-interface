@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
     <title>Dashboard</title>
 </head>
 
@@ -25,23 +26,29 @@
                 </button>
             </div>
         </div>
+        <div class="sixteen wide column" id="info">
+            
+        </div>
+        <div class="sixteen wide column">
+            <div class="ts small active primary progress">
+                <div class="bar" style="width: 30%">
+                    <div class="text">30</div>
+                </div>
+            </div>
+        </div>
         <div class="sixteen wide column" id="content">
             <div class="ts segment">
-                <table class="ts borderless celled table loading">
+                <table class="ts celled selectable table loading">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
-                            <th>Field</th>
-                            <th>Value</th>
+                            <th>名稱</th>
+                            <th>欄位</th>
+                            <th>值</th>
+                            <th>時間</th>
+                            <th>資訊</th>
                         </tr>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>卡莉絲</td>
-                                <td>Caris</td>
-                                <td>2</td>
-                            </tr>
                         </tbody>
                     </thead>
                 </table>
@@ -50,9 +57,95 @@
                 <div class="ts text loader">讀取中</div>
             </div>
         </div>
+        <div class="ts modals dimmer">
+            <dialog id="newDevice" class="ts closable tiny modal">
+                <div class="header">
+                    新增裝置
+                </div>
+                <div class="content">
+                    <div class="message"></div>
+                    <form class="ts horizontal form">
+                        <div class="field">
+                            <label>裝置名稱</label>
+                            <input name="name" type="text">
+                        </div>
+                        <div class="field">
+                            <label>MAC 位址</label>
+                            <input name="mac" type="text">
+                        </div>
+                    </form>
+                </div>
+                <div class="actions">
+                    <button class="ts deny button">
+                        取消
+                    </button>
+                    <button class="ts positive button">
+                        確定
+                    </button>
+                </div>
+            </dialog>
+        </div>
+        <div class="ts modals dimmer">
+            <dialog id="viewDevice" class="ts closable tiny modal" open>
+                <div class="header">
+                    所有裝置
+                </div>
+                <div class="content">
+                    <table class="ts celled table loading">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                            </tr>
+                            <tbody>
+                            </tbody>
+                        </thead>
+                    </table>
+                </div>
+                <div class="actions">
+                    <button class="ts ok button">
+                        關閉
+                    </button>
+                </div>
+            </dialog>
+        </div>
+        <div class="ts modals dimmer">
+            <dialog id="seeinfo" class="ts closable tiny modal" open>
+
+            </dialog>
+        </div>
     </div>
     <script src="app.js"></script>
     <script>
+        function viewDevice() {
+            ts('#viewDevice').modal("show");
+        }
+        function newDevice() {
+            var message = document.querySelector("#newDevice > .content > .message");
+            var form = document.querySelector("#newDevice > .content > form");
+            var item = form.querySelectorAll("input[type='text']");
+            var data = {};
+            item.forEach((e) => {
+                e.value = "";
+            })
+            message.innerHTML = ""
+            ts('#newDevice').modal({
+                onApprove: function () {
+                    item.forEach(e => {
+                        data[e.name] = e.value;
+                    });
+                    post(data, "/device?token=" + localStorage.getItem("token")).then((res) => {
+                        if (res.error) {
+                            console.log("err")
+                            message.innerHTML = ErrorMessageBox("裝置名稱或 MAC 已存在");
+                            return false;
+                        } else {
+                            alert("裝置已新增");
+                        }
+                    })
+                }
+            }).modal("show");
+        }
         function logout() {
             CleanSession();
             window.location = "./";
@@ -63,6 +156,7 @@
             }
             loadData();
         }
+        setInterval(load(), 10*60*1000)
         window.onload = load;
     </script>
 </body>

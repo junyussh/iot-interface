@@ -1,4 +1,5 @@
-const URL = "http://api.cws.nctu.me/api";
+const URL = "http://localhost:8080/api";
+var Data;
 
 const SaveSession = (token) => {
   localStorage["token"] = token;
@@ -11,7 +12,7 @@ function isLogin() {
   return new Promise((resolve) => {
     if (localStorage.getItem("token")) {
       get("/user?token=" + localStorage.getItem("token")).then((res) => {
-        if (res._id) {
+        if (res.id) {
           resolve(true);
         } else {
           CleanSession();
@@ -23,12 +24,118 @@ function isLogin() {
     }
   })
 }
+const TableRows = (number, name, field, value, time, mac) => {
+  return `
+  <tr>
+  <td>${number}</td>
+  <td>${name}</td>
+  <td>${field}</td>
+  <td>${value}</td>
+  <td>${time}</td>
+  <td><button data-name=${name} data-mac=${mac} onclick="seeinfo(this)" class="ts icon button"><i class="icon unhide"></i></button></td>
+  </tr>
+  `
+}
+const modal = (name, mac) => {
+  return `
+  <div class="header">
+    裝置資訊
+  </div>
+  <div class="content">
+  <form class="ts horizontal form">
+  <div class="field">
+      <label>裝置名稱</label>
+      <input name="name" type="text" value='${name}'>
+  </div>
+  <div class="field">
+      <label>MAC 位址</label>
+      <input name="mac" type="text" value='${mac}'>
+  </div>
+</form>
+  </div>
+  <div class="actions">
+    <button class="ts ok button">
+        關閉
+    </button>
+  </div>`
+}
+const info = (username, point, frequency) => {
+  return `
+  <div class="ts three cards">
+  <div class="ts card">
+      <div class="content">
+          <div class="ts left aligned statistic">
+              <div class="value">${username}</div>
+              <div class="label">使用者名稱</div>
+          </div>
+      </div>
+      <div class="symbol">
+          <i class="icon user"></i>
+      </div>
+  </div>
+  <div class="ts card">
+      <div class="content">
+          <div class="ts left aligned statistic">
+              <div class="value">${point}</div>
+              <div class="label">監控點</div>
+          </div>
+      </div>
+      <div class="symbol">
+          <i class="icon microchip"></i>
+      </div>
+  </div>
+  <div class="ts card">
+      <div class="content">
+          <div class="ts left aligned statistic">
+              <div class="value">${frequency}</div>
+              <div class="label">更新頻率(分鐘)</div>
+          </div>
+      </div>
+      <div class="symbol">
+          <i class="icon time"></i>
+      </div>
+  </div>
+  </div>
+  `
+}
+function getUserInfo(token) {
+  get("/user?token=" + localStorage.getItem("token")).then((data) => {
+
+  })
+}
+function seeinfo(e) {
+  document.querySelector("#seeinfo").removeAttribute("data-modal-initialized")
+  var name = e.getAttribute("data-name");
+  var mac = e.getAttribute("data-mac");
+  document.querySelector("#seeinfo").innerHTML = modal(name, mac)
+  ts("#seeinfo").modal("show")
+}
 function loadData() {
   var content = document.querySelector("#content");
-  console.log(content);
-  get("/device?token=" + localStorage.getItem("token")).then((res) => {
-    console.log(res);
-  });
+  content.querySelector(".dimmer").classList.add("active");
+  get("/data?token=" + localStorage.getItem("token")).then((data) => {
+    Data = data;
+    var fragment = "";
+    var number = 1;
+    data.map((item) => {
+      if (item.data == 0) {
+        fragment += TableRows(number, "NaN", "NaN", "NaN", "NaN", item.mac)
+        number++;
+      } else {
+        item.data.forEach((e) => {
+          var time = new Date(e.time).toLocaleString()
+          fragment += TableRows(number, e.name, e.field, e.value, time, item.mac)
+          number++;
+        })
+      }
+    })
+    number--;
+    get("/user?token=" + localStorage.getItem("token")).then((user) => {
+      document.querySelector("#info").innerHTML = info(user.username, number, "10")
+    })
+    content.querySelector("tbody").innerHTML = fragment;
+    content.querySelector(".dimmer").classList.remove("active");
+  })
 }
 function getValue() {
   var form = document.querySelector("form");
@@ -94,8 +201,7 @@ function post(data, url) {
     headers: {
       'Accept': 'application/json',
       "Content-Type": "application/json"
-    },
-    mode: 'cors'
+    }
   })
     .then(response => response.json())
 }
