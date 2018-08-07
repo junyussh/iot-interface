@@ -118,18 +118,23 @@ function loadData() {
     Data = data;
     var fragment = "";
     var number = 1;
-    data.map((item) => {
-      if (item.data == 0) {
-        fragment += TableRows(number, item.name, "NaN", "NaN", "NaN", "NaN", item.mac)
-        number++;
-      } else {
-        item.data.forEach((e) => {
-          var time = new Date(e.time).toLocaleString()
-          fragment += TableRows(number, item.name, e.name, e.field, e.value, time, item.mac)
+    if (Object.getOwnPropertyNames(data).length != 0) {
+      data.map((item) => {
+        if (item.data == 0) {
+          fragment += TableRows(number, item.name, "NaN", "NaN", "NaN", "NaN", item.mac)
           number++;
-        })
-      }
-    })
+        } else {
+          item.data.forEach((e) => {
+            var time = new Date(e.time).toLocaleString()
+            fragment += TableRows(number, item.name, e.name, e.field, e.value, time, item.mac)
+            number++;
+          })
+        }
+      })
+    } else {
+
+    }
+
     number--;
     get("/user?token=" + localStorage.getItem("token")).then((user) => {
       document.querySelector("#info").innerHTML = info(user.username, number, "10")
