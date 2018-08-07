@@ -1,7 +1,7 @@
 <?php
 header('Content-Type: application/json; charset=utf-8');
 define("DB_username", "root");
-define("DB_passwd", "j08160816");
+define("DB_passwd", "root");
 define("DB_name", "jgate_modbus");
 define("DB_host", "localhost");
 
