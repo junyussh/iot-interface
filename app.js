@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/api";
+const URL = "http://192.168.0.181:8080/api";
 var Data;
 
 const SaveSession = (token) => {
@@ -24,11 +24,12 @@ function isLogin() {
     }
   })
 }
-const TableRows = (number, name, field, value, time, mac) => {
+const TableRows = (number, name, sensor_name, field, value, time, mac) => {
   return `
   <tr>
   <td>${number}</td>
   <td>${name}</td>
+  <td>${sensor_name}</td>
   <td>${field}</td>
   <td>${value}</td>
   <td>${time}</td>
@@ -119,12 +120,12 @@ function loadData() {
     var number = 1;
     data.map((item) => {
       if (item.data == 0) {
-        fragment += TableRows(number, "NaN", "NaN", "NaN", "NaN", item.mac)
+        fragment += TableRows(number, item.name, "NaN", "NaN", "NaN", "NaN", item.mac)
         number++;
       } else {
         item.data.forEach((e) => {
           var time = new Date(e.time).toLocaleString()
-          fragment += TableRows(number, e.name, e.field, e.value, time, item.mac)
+          fragment += TableRows(number, item.name, e.name, e.field, e.value, time, item.mac)
           number++;
         })
       }
