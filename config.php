@@ -26,9 +26,9 @@
       </a>
     </div>
     <div class="eight wide column">
-      <h1 class="ts center aligned header">
+      <h2 class="ts center aligned header">
         CGATE Cloud Setting
-      </h1>
+      </h2>
     </div>
     <div class="four wide column"></div>
   </div>
