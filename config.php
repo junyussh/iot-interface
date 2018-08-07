@@ -140,7 +140,7 @@
   <script>
     var active;
     const MAC = "<?php echo exec("python getmac.py") ?>";
-    const Name = "<?php echo exec(" curl http://localhost/interface/connect.php "); ?>";
+    const Name = "<?php echo exec("python getName.py"); ?>";
     const URL = "http://localhost:8080/api";
     function ErrorModal(message) {
       var modal = `
