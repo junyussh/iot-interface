@@ -157,6 +157,7 @@
         </div>
       `
       document.querySelector("#error").innerHTML = modal;
+      document.querySelector("#error").removeAttribute("data-modal-initialized");
     }
     function SuccessModal(message) {
       var modal = `
@@ -173,6 +174,7 @@
         </div>
       `
       document.querySelector("#success").innerHTML = modal;
+      document.querySelector("#success").removeAttribute("data-modal-initialized");
     }
     function Check(e) {
       if (active) {
@@ -274,10 +276,6 @@
           "Content-Type": "application/json"
         }
       })
-        .then(response => response.json())
-        .then((res) => {
-          document.querySelector("#success").removeAttribute("data-modal-initialized");
-        })
     }
     function save() {
       var payload = getValue(".config");
