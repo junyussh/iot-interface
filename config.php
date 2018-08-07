@@ -49,11 +49,11 @@
         <div class="hidden config">
           <div class="field">
             <label>裝置名稱</label>
-            <input name="name" value="<?php echo exec(" curl http://localhost/interface/connect.php "); ?>" type="text">
+            <input name="name" value="<?php echo exec(" python getName.py "); ?>" type="text">
           </div>
           <div class="field">
             <label>MAC 位址</label>
-            <input name="mac" type="text" disabled value=<?php echo exec( "python getmac.py") ?>>
+            <input name="mac" type="text" disabled value=<?php echo exec("python getmac.py") ?>>
           </div>
           <div class="field">
             <label>使用者名稱</label>
@@ -140,7 +140,7 @@
   <script>
     var active;
     const MAC = "<?php echo exec("python getmac.py") ?>";
-    const Name = "<?php echo exec(" curl http://localhost/interface/connect.php "); ?>";
+    const Name = "<?php echo exec("python getName.py"); ?>";
     const URL = "http://localhost:8080/api";
     function ErrorModal(message) {
       var modal = `
