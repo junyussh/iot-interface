@@ -19,13 +19,11 @@
 </style>
 
 <body>
-  <div class="ts narror container grid">
+  <div style="align-items: center;" class="ts narror container grid">
     <div class="four wide column">
-      <h2>
-        <a class="left" href="">
-          <img src="logo.jpg" alt="" srcset=""></a>
-      </h2>
-
+      <a class="left" href="http://www.embedded-box.com.tw">
+        <img class="ts image" src="logo.jpg" alt="" srcset="">
+      </a>
     </div>
     <div class="eight wide column">
       <h1 class="ts center aligned header">
