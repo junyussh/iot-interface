@@ -23,13 +23,13 @@
     <div class="four wide column">
       <h2>
         <a class="left" href="">
-          <i class="icon cubes"></i> 聯立達科技</a>
+          <img src="logo.jpg" alt="" srcset=""></a>
       </h2>
 
     </div>
     <div class="eight wide column">
       <h1 class="ts center aligned header">
-        Config
+        CGATE Cloud Setting
       </h1>
     </div>
     <div class="four wide column"></div>
