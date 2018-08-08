@@ -231,7 +231,7 @@
       var form = document.querySelector(query);
       var data = {};
       var item = form.querySelectorAll(
-        "input[type='text'], input[type='password']"
+        "input[type='text'], input[type='password'], select"
       );
       item.forEach(e => {
         data[e.name] = e.value;
