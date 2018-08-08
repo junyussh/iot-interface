@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css">
   <script>
     async function load() {
-      if(await isLogin()) {
+      if (await isLogin()) {
         window.location = "./dashboard.html"
       } else {
         console.log("Not login")
@@ -20,33 +20,45 @@
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="ts narror container">
-      <div class="login-box ts centered segment ">
-        <form class="ts form">
-          <h2 class="ts center aligned header">歡迎使用
-            <div class="sub header">請先進行登入</div>
-          </h2>
-          <div id="message"></div>
-          <div class="ts divider"></div>
-          <div class="field">
-            <label>使用者名稱</label>
-            <input name="username" type="text">
-          </div>
-          <div class="field">
-            <label>密碼</label>
-            <input name="password" type="password">
-          </div>
-          <a href="register.html" class="ts secondary button">註冊</a>
-          <button onclick="login(this)" class="ts primary button labeled icon right floated">
-            登入
-            <i class="send icon"></i>
-          </button>
-        </form>
-      </div>
+  <div style="align-items: center;" class="ts narror container grid">
+    <div class="four wide column">
+      <a class="left" href="http://www.embedded-box.com.tw">
+        <img class="ts image" src="logo.jpg" alt="" srcset="">
+      </a>
+    </div>
+    <div class="eight wide column">
+      <h2 class="ts center aligned header">
+        智慧社區雲
+      </h2>
+    </div>
+    <div class="four wide column">
     </div>
   </div>
-  <div class="bg">
+  <div class="ts divider"></div <div class="wrapper">
+  <div class="ts narror container">
+    <div class="login-box ts centered segment ">
+      <form class="ts form">
+        <h2 class="ts center aligned header">歡迎使用
+          <div class="sub header">請先進行登入</div>
+        </h2>
+        <div id="message"></div>
+        <div class="ts divider"></div>
+        <div class="field">
+          <label>使用者名稱</label>
+          <input name="username" type="text">
+        </div>
+        <div class="field">
+          <label>密碼</label>
+          <input name="password" type="password">
+        </div>
+        <button onclick="login(this)" class="ts primary fluid button labeled icon right floated">
+          登入
+          <i class="send icon"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+  </div>
 
   </div>
   <script src="./app.js"></script>

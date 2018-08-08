@@ -27,7 +27,7 @@
     </div>
     <div class="eight wide column">
       <h2 class="ts center aligned header">
-        CGATE Cloud Setting
+        CGate Cloud Setting
       </h2>
     </div>
     <div class="four wide column"></div>
@@ -59,7 +59,7 @@
           </div>
           <div class="field">
             <label>更新頻率(分)</label>
-            <select>
+            <select name="frequency">
               <option>10</option>
               <option>20</option>
               <option>30</option>
@@ -139,7 +139,7 @@
     var active;
     const MAC = "<?php echo exec("python getmac.py") ?>";
     const Name = "<?php echo exec("python getName.py"); ?>";
-    const URL = "http://192.168.0.181:8080/api";
+    const URL = "http://localhost:8080/api";
     function ErrorModal(message) {
       var modal = `
       <div class="header">

@@ -13,19 +13,25 @@
 
 <body>
     <br>
-    <div class="ts container narrow stackable grid">
-        <div class="two column row">
-            <div class="twelve wide column">
-                <h2 class="ts header">
-                    儀表板
-                </h2>
-            </div>
-            <div class="four wide column">
-                <button onclick="logout()" class="ts basic button right floated">
-                    <i class="icon log out"></i> 登出
-                </button>
-            </div>
+    <div style="align-items: center;" class="ts narror container grid">
+        <div class="four wide column">
+            <a class="left" href="http://www.embedded-box.com.tw">
+                <img class="ts image" src="logo.jpg" alt="" srcset="">
+            </a>
         </div>
+        <div class="eight wide column">
+            <h2 class="ts center aligned header">
+                智慧社區雲
+            </h2>
+        </div>
+        <div class="four wide column">
+            <button onclick="logout()" class="ts basic button right floated">
+                <i class="icon log out"></i> 登出
+            </button>
+        </div>
+    </div>
+    <div class="ts divider"></div>
+    <div class="ts container narrow stackable grid">
         <div class="sixteen wide column" id="info">
 
         </div>
@@ -35,6 +41,13 @@
                     <div class="text">30</div>
                 </div>
             </div>-->
+            <div class="ts icon secondary primary message">
+                <i class="clock icon"></i>
+                <div class="content">
+                    <div class="header">上次更新時間</div>
+                    <p id="timestamp"></p>
+                </div>
+            </div>
         </div>
         <div class="sixteen wide column" id="content">
             <div class="ts segment">
@@ -137,7 +150,7 @@
                     });
                     post(data, "/device?token=" + localStorage.getItem("token")).then((res) => {
                         if (res.error) {
-                            console.log("err")
+                            console.log("err");
                             message.innerHTML = ErrorMessageBox("裝置名稱或 MAC 已存在");
                             return false;
                         } else {
@@ -153,11 +166,11 @@
         }
         async function load() {
             if (!await isLogin()) {
-                window.location = "./"
+                window.location = "./";
             }
             loadData();
         }
-        setInterval(load(), 10 * 60 * 1000)
+        self.setInterval(loadData, 10 * 60 * 1000);
         window.onload = load;
     </script>
 </body>

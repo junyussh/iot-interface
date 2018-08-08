@@ -19,6 +19,10 @@ switch ($method) {
         $obj = json_decode($input);
         $sql = "UPDATE device_info SET name='" . $obj->name . "' WHERE ID=1;";
         $stmt = mysqli_query($db, $sql);
+        $file = fopen("setting.txt", "w") or die("Unable to open file!");
+        $txt = $obj -> frequency;
+        fwrite($file, $txt);
+        fclose($file);
         if ($stmt) {
             $res->error = false;
             $res->message = "save changes";

@@ -139,6 +139,7 @@ function loadData() {
     get("/user?token=" + localStorage.getItem("token")).then((user) => {
       document.querySelector("#info").innerHTML = info(user.username, number, "10")
     })
+    document.querySelector("#timestamp").innerHTML = new Date().toLocaleString();
     content.querySelector("tbody").innerHTML = fragment;
     content.querySelector(".dimmer").classList.remove("active");
   })
