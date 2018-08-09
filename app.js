@@ -99,11 +99,6 @@ const info = (username, point, frequency) => {
   </div>
   `
 }
-function getUserInfo(token) {
-  get("/user?token=" + localStorage.getItem("token")).then((data) => {
-
-  })
-}
 function seeinfo(e) {
   document.querySelector("#seeinfo").removeAttribute("data-modal-initialized")
   var name = e.getAttribute("data-name");

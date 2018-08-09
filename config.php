@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Config</title>
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tocas-ui/2.3.3/tocas.js"></script>
+  <title>CGate Cloud Setting</title>
+  <link rel="stylesheet" href="asset/tocas.css">
+  <script src="asset/tocas.js"></script>
 </head>
 <style>
   .hidden {
@@ -60,9 +60,6 @@
           <div class="field">
             <label>更新頻率(分)</label>
             <select name="frequency">
-              <option>10</option>
-              <option>20</option>
-              <option>30</option>
             </select>
           </div>
           <button onclick="save()" class="ts primary button">儲存</button>
@@ -328,6 +325,17 @@
       })
     });
     function load() {
+      var element = document.querySelector("select");
+      var fragment = document.createDocumentFragment();
+      for(let i=1; i<=60; i++) {
+        var option = document.createElement('option');
+        option.textContent = i;
+        if(i == 10) {
+          option.setAttribute("selected", "selected");
+        }
+        fragment.appendChild(option);
+      }
+      element.appendChild(fragment);
       get("/device?mac=" + MAC).then((res) => {
         let checkbox = document.querySelector("#active");
         if (res.message == "exist") {
