@@ -16,8 +16,8 @@ def main():
         results = cursor.fetchall()
         print(results[0][4])
     elif (arg == "domain"):
-        db = MySQLdb.connect(host=database_config["host"],
-        user=database_config["username"], passwd=database_config["password"], db=database_config["name"])
+        db = MySQLdb.connect(host="localhost",
+        user="root", passwd="root", db="jgate_modbus")
         cursor = db.cursor()
         cursor.execute("SELECT * FROM cloud_setting;")
         results = cursor.fetchone()
