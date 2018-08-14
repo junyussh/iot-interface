@@ -19,9 +19,11 @@ switch ($method) {
         $res = new stdClass();
         $obj = json_decode($input);
         $sql = "UPDATE device_info SET name='" . $obj->name . "' WHERE ID=1;";
-        $sql .= "UPDATE cloud_setting SET name='" . $obj->name . "' WHERE Name='". $name ."';";
-        $sql .= "UPDATE cloud_setting SET Frequency=". $obj -> frequency ." WHERE Name='". $name ."';";
-        $stmt = mysqli_multi_query($sql);
+        $sql .= "UPDATE cloud_setting SET name='" . $obj->name . "' WHERE ID=1;";
+        $sql .= "UPDATE cloud_setting SET Frequency=". $obj -> frequency ." WHERE ID=1;";
+        $sql .= "UPDATE cloud_setting SET Active=". $obj -> active ." WHERE ID=1;";
+        $stmt = $db -> multi_query($sql);
+        
         /*
         $file = fopen("setting.txt", "w") or die("Unable to open file!");
         $txt = $obj -> frequency;
@@ -33,7 +35,7 @@ switch ($method) {
             $res->message = "save changes";
         } else {
             $res->error = true;
-            $res->message = "Query error";
+            $res->message = mysqli_error($db);
         }
         echo json_encode($res);
         break;
