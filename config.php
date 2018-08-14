@@ -138,8 +138,8 @@
   </div>
   <script>
     var active;
-    const MAC = "<?php echo exec("python getmac.py") ?>";
-    const Name = "<?php echo exec("python getName.py"); ?>";
+    const MAC = "<?php echo exec("python get.py MAC") ?>";
+    const Name = "<?php echo exec("python get.py Name"); ?>";
     const URL = "http://192.168.0.181:8080/api";
     function ErrorModal(message) {
       var modal = `
