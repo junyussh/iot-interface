@@ -21,7 +21,7 @@ switch ($method) {
         $sql = "UPDATE device_info SET name='" . $obj->name . "' WHERE ID=1;";
         $sql .= "UPDATE cloud_setting SET name='" . $obj->name . "' WHERE Name='". $name ."';";
         $sql .= "UPDATE cloud_setting SET Frequency=". $obj -> frequency ." WHERE Name='". $name ."';";
-        $stmt = $db -> multi_query($sql);
+        $stmt = mysqli_multi_query($sql);
         /*
         $file = fopen("setting.txt", "w") or die("Unable to open file!");
         $txt = $obj -> frequency;
