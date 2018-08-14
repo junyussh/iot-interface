@@ -335,7 +335,7 @@
       for(let i=1; i<=60; i++) {
         var option = document.createElement('option');
         option.textContent = i;
-        if(i == 10) {
+        if(i == <?php echo exec("python get.py frequency");?>) {
           option.setAttribute("selected", "selected");
         }
         fragment.appendChild(option);

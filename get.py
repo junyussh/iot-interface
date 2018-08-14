@@ -22,5 +22,12 @@ def main():
         cursor.execute("SELECT * FROM cloud_setting;")
         results = cursor.fetchone()
         print(results[2])
+    elif (arg == "frequency"):
+        db = MySQLdb.connect(host="localhost",
+        user="root", passwd="root", db="jgate_modbus")
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM cloud_setting;")
+        results = cursor.fetchone()
+        print(results[1])
 if __name__ == "__main__":
     main()
