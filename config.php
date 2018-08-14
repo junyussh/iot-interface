@@ -46,12 +46,16 @@
         </div>
         <div class="hidden config">
           <div class="field">
+            <label>Cloud Domain</label>
+            <input name="name" value="<?php echo exec(" python get.py domain"); ?>" type="text" disabled>
+          </div>
+          <div class="field">
             <label>裝置名稱</label>
-            <input name="name" value="<?php echo exec(" python getName.py "); ?>" type="text">
+            <input name="name" value="<?php echo exec(" python get.py Name"); ?>" type="text">
           </div>
           <div class="field">
             <label>MAC 位址</label>
-            <input name="mac" type="text" disabled value=<?php echo exec("python getmac.py") ?>>
+            <input name="mac" type="text" disabled value=<?php echo exec("python get.py MAC") ?>>
           </div>
           <div class="field">
             <label>使用者名稱</label>
@@ -233,6 +237,7 @@
       item.forEach(e => {
         data[e.name] = e.value;
       });
+      data["active"] = document.getElementById("active").checked;
       return data;
     }
     function activeDevice(payload, token) {

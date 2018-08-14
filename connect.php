@@ -13,16 +13,21 @@ if ($db->connect_error) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
+$name = exec("python get.py Name");
 switch ($method) {
     case "POST":
         $res = new stdClass();
         $obj = json_decode($input);
         $sql = "UPDATE device_info SET name='" . $obj->name . "' WHERE ID=1;";
-        $stmt = mysqli_query($db, $sql);
+        $sql .= "UPDATE cloud_setting SET name='" . $obj->name . "' WHERE Name='". $name ."';";
+        $sql .= "UPDATE cloud_setting SET Frequency=". $obj -> frequency ." WHERE Name='". $name ."';";
+        $stmt = $db -> multi_query($sql);
+        /*
         $file = fopen("setting.txt", "w") or die("Unable to open file!");
         $txt = $obj -> frequency;
         fwrite($file, $txt);
         fclose($file);
+        */
         if ($stmt) {
             $res->error = false;
             $res->message = "save changes";
