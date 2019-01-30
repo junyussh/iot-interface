@@ -351,6 +351,11 @@
         }
         isChecked(checkbox);
       })
+      .catch((err) => {
+        ErrorModal("無法連接至雲端！")
+        ts("#error").modal("show");
+        console.log(err);
+      })
     }
     window.onload = load;
   </script>
