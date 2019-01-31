@@ -18,7 +18,7 @@ switch ($method) {
     case "POST":
         $res = new stdClass();
         $obj = json_decode($input);
-        $sql = "UPDATE device_info SET name='" . $obj->name . "' WHERE ID=1;";
+        $sql = "UPDATE system SET value='" . $obj->name . "' WHERE name='system_name';";
         $sql .= "UPDATE cloud_setting SET name='" . $obj->name . "' WHERE ID=1;";
         $sql .= "UPDATE cloud_setting SET Frequency=". $obj -> frequency ." WHERE ID=1;";
         $sql .= "UPDATE cloud_setting SET Active=". $obj -> active ." WHERE ID=1;";

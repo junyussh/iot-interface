@@ -20,8 +20,8 @@ def main():
         user=database_config["username"], passwd=database_config["password"], db=database_config["name"])
         cursor = db.cursor()
         cursor.execute("select * from system where name='system_name';")
-        results = cursor.fetchall()
-        print(results[0][1])
+        results = cursor.fetchone()
+        print(results[3])
     elif (arg == "domain"):
         db = MySQLdb.connect(host=database_config["host"],
         user=database_config["username"], passwd=database_config["password"], db=database_config["name"])
