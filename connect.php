@@ -20,6 +20,7 @@ switch ($method) {
         $obj = json_decode($input);
         $sql = "UPDATE system SET value='" . $obj->name . "' WHERE name='system_name';";
         $sql .= "UPDATE cloud_setting SET name='" . $obj->name . "' WHERE ID=1;";
+        $sql .= "UPDATE cloud_setting SET Domain='" . $obj-> domain . "' WHERE ID=1;";
         $sql .= "UPDATE cloud_setting SET Frequency=". $obj -> frequency ." WHERE ID=1;";
         $sql .= "UPDATE cloud_setting SET Active=". $obj -> active ." WHERE ID=1;";
         $stmt = $db -> multi_query($sql);

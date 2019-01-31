@@ -47,7 +47,7 @@
         <div class="hidden config">
           <div class="field">
             <label>Cloud Domain</label>
-            <input name="name" value="<?php echo exec(" python get.py domain"); ?>" type="text" disabled>
+            <input name="domain" value="<?php echo exec(" python get.py domain"); ?>" type="text" disabled>
           </div>
           <div class="field">
             <label>裝置名稱</label>
@@ -140,7 +140,7 @@
     var active;
     const MAC = "<?php echo exec("python get.py MAC") ?>";
     const Name = "<?php echo exec("python get.py Name"); ?>";
-    const URL = "http://192.168.0.181:8080/api";
+    const URL = "http://192.168.0.167:8080/api";
     function ErrorModal(message) {
       var modal = `
       <div class="header">
