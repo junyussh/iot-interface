@@ -1,4 +1,4 @@
-const URL = "http://192.168.0.181:8080/api";
+const URL = "http://192.168.0.167:8080/api";
 var Data;
 
 const SaveSession = (token) => {
@@ -24,9 +24,21 @@ function isLogin() {
     }
   })
 }
-const TableRows = (number, name, sensor_name, field, value, time, mac) => {
+const TableRows = (number, name, sensor_name, field, value, time, mac, status) => {
+  let className = "";
+  switch(status) {
+    case "NO RESPONSE":
+      className = "negative";
+      break;
+    case "NORMAL":
+      className = "positive";
+      break;
+    case "WARNING":
+      className = "warning";
+      break;
+  }
   return `
-  <tr>
+  <tr class="${className}">
   <td>${number}</td>
   <td>${name}</td>
   <td>${sensor_name}</td>
@@ -121,7 +133,7 @@ function loadData() {
         } else {
           item.data.forEach((e) => {
             var time = new Date(e.time).toLocaleString()
-            fragment += TableRows(number, item.name, e.name, e.field, e.value, time, item.mac)
+            fragment += TableRows(number, item.name, e.name, e.field, e.value, time, item.mac, e.status)
             number++;
           })
         }
