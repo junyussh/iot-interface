@@ -28,13 +28,13 @@ const TableRows = (number, name, sensor_name, field, value, time, mac, status) =
   let className = "";
   switch(status) {
     case "NO RESPONSE":
-      className = "negative";
+      className = "warning";
       break;
     case "NORMAL":
       className = "positive";
       break;
     case "ALARM":
-      className = "warning";
+      className = "negative";
       break;
     case "UNKNOWN":
       className = "info";
