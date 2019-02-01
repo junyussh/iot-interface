@@ -33,8 +33,11 @@ const TableRows = (number, name, sensor_name, field, value, time, mac, status) =
     case "NORMAL":
       className = "positive";
       break;
-    case "WARNING":
+    case "ALARM":
       className = "warning";
+      break;
+    case "UNKNOWN":
+      className = "info";
       break;
   }
   return `
@@ -45,6 +48,7 @@ const TableRows = (number, name, sensor_name, field, value, time, mac, status) =
   <td>${field}</td>
   <td>${value}</td>
   <td>${time}</td>
+  <td>${status}</td>
   <td><button data-name=${name} data-mac=${mac} onclick="seeinfo(this)" class="ts icon button"><i class="icon unhide"></i></button></td>
   </tr>
   `
